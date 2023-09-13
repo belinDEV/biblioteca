@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Reserva</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+    <form>
+        <div class="mb-12">
+            <input name="id" th:value="${reserva.id}" type="text" hidden="true">
+            <div class="mb-12">
+                <label class="form-label">Aluno:</label>
+                <select th:field="${reserva.aluno.id}" class="form-control">
+                    <option value="" selected="selected">Selecione...</option>
+                    <option th:each="aluno : ${listaDeAluno}" th:value="${aluno.id}" th:text="${aluno.nome}"></option>
+                </select>
+            </div>
+            <div class="mb-12">
+                <label class="form-label">Livro:</label>
+                <select th:field="${reserva.livro.id}" class="form-control">
+                    <option value="" selected="selected">Selecione...</option>
+                    <option th:each="livro : ${listaDeLivro}" th:value="${livro.id}" th:text="${livro.titulo}"></option>
+                </select>
+            </div>
+            <div class="mb-12">
+                <label for="dataInicio" class="form-label">Data de Inicio:</label>
+                <input name="dataInicio" type="date" th:value="${reserva.dataInicio}" class="form-control"
+                       id="dataInicio" required>
+            </div>
+            <label for="dataFim" class="form-label">Data de Fim:</label>
+            <input name="dataFim" type="date" th:value="${reserva.dataFim}" class="form-control" id="dataFim" required>
+        </div>
+        <div class="mb-12">
+            <label for="observacao" class="form-label">Observação:</label>
+            <textarea name="observacao" type="text" th:value="${reserva.observacao}" class="form-control"
+                      id="observacao"
+            ></textarea>
+        </div>
+        <div class="col-12">
+            <button th:formaction="@{/reserva/salvar/}" formmethod="post" type="submit" class="btn btn-dark">Salvar
+            </button>
+        </div>
+    </form>
+    <div style=" text-align: right;">
+        <a type="button" class="btn btn-outline-primary" th:href="@{/home}">Home</a>
+        <a type="button" class="btn btn-outline-primary" th:href="@{/reserva/lista}">Voltar a Lista </a>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+        crossorigin="anonymous">
+</script>
+</body>
+</html>

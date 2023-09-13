@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Aluno</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+
+    <form>
+        <div class="mb-12">
+            <input name="id" th:value="${aluno.id}" type="text" hidden="true">
+
+            <div class="mb-12">
+                <label for="ra" class="form-label">Registro de Aluno:</label>
+                <input name="ra" type="text" th:value="${aluno.ra}" class="form-control" id="ra" required>
+            </div>
+            <label for="nome" class="form-label">Nome:</label>
+            <input name="nome" type="text" th:value="${aluno.nome}" class="form-control" id="nome" required>
+        </div>
+        <div class="mb-12">
+            <label for="endereco" class="form-label">Endereço:</label>
+            <input name="endereco" type="text" th:value="${aluno.endereco}" class="form-control" id="endereco"
+                   required>
+        </div>
+        <div class="mb-12">
+            <label for="cidade" class="form-label">Cidade:</label>
+            <input name="cidade" type="text" th:value="${aluno.cidade}" class="form-control" id="cidade" required>
+        </div>
+        <div class="mb-12">
+            <label for="uf" class="form-label">Estado:</label>
+            <input name="uf" type="text" th:value="${aluno.uf}" class="form-control" id="uf" required>
+        </div>
+        <div class="mb-12">
+            <label for="telefone" class="form-label">Telefone:</label>
+            <input name="telefone" type="text" th:value="${aluno.telefone}" class="form-control" id="telefone" required>
+        </div>
+        <div class="mb-12">
+            <label class="form-label">Curso:</label>
+            <select th:field="${aluno.curso.id}" class="form-control">
+                <option value="" selected="selected">Selecione...</option>
+                <option th:each="curso : ${listaDeCursos}" th:value="${curso.id}" th:text="${curso.nome}"></option>
+            </select>
+        </div>
+        <div class="col-12">
+            <button th:formaction="@{/aluno/salvar}" formmethod="post" type="submit" class="btn btn-dark">Salvar
+            </button>
+        </div>
+    </form>
+    <div style=" text-align: right;">
+    <a type="button" class="btn btn-outline-primary" th:href="@{/}">Home</a>
+    <a type="button" class="btn btn-outline-primary" th:href="@{/aluno/lista}">Voltar a Lista</a>
+    </div>
+    </div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+        crossorigin="anonymous">
+</script>
+</body>
+</html>
